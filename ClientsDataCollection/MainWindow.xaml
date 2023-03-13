@@ -1,0 +1,60 @@
+﻿<Window x:Class="ClientsDataCollection.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientsDataCollection"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="PowerNet" Foreground="#FFFDE366" FontSize="24" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Foreground="#FFFDE366" FontFamily="Arial" Text="Search"/>
+                <TextBox Background="Black" Height="25" FontFamily="Arial" Foreground="#FFFDE366"/>
+            </StackPanel>
+            <ComboBox Grid.Column="2" BorderBrush="#FF272222">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF0F0F0"/>
+                        <GradientStop Color="#FF231C1C" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+        </Grid>
+        
+        
+        <ListView Grid.Row="1" Background="PapayaWhip" Foreground="Black" >
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn x:Name="IdColumn" Header="Id"/>
+                        <GridViewColumn x:Name="NameColumn" Header="Name"/>
+                        <GridViewColumn x:Name="AdressColumn" Header="Address"/>
+                        <GridViewColumn x:Name="PhoneColumn" Header="Phone"/>
+                        <GridViewColumn x:Name="IdTarifColumns" Header="Tarif"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Edit" Click="EditButton"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>        
+    </Grid>
+</Window>
