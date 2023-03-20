@@ -13,10 +13,10 @@ namespace ClientsDataCollection.DataBases
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PowerNetEntities : DbContext
+    public partial class PowerNetEntitiess : DbContext
     {
-        public PowerNetEntities()
-            : base("name=PowerNetEntities")
+        public PowerNetEntitiess()
+            : base("name=PowerNetEntitiess")
         {
         }
     
@@ -27,6 +27,5 @@ namespace ClientsDataCollection.DataBases
     
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Tarifs> Tarifs { get; set; }
     }
 }

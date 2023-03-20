@@ -18,8 +18,6 @@ namespace ClientsDataCollection.DataBases
         public string name { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
-        public Nullable<int> idTarif { get; set; }
-    
-        public virtual Tarifs Tarifs { get; set; }
+        public string Tarif { get; set; }
     }
 }
