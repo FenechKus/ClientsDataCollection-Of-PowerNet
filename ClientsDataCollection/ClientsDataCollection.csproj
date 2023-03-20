@@ -64,6 +64,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataBases\Clients.cs">
+      <DependentUpon>PowerNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\PowerNet.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PowerNet.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\PowerNet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PowerNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\PowerNet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PowerNet.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\sysdiagrams.cs">
+      <DependentUpon>PowerNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Add.xaml.cs">
+      <DependentUpon>Add.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Edit.xaml.cs">
+      <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,35 +99,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataBases\Clients.cs">
-      <DependentUpon>PowerNetDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBases\PowerNetDataBase.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PowerNetDataBase.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBases\PowerNetDataBase.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PowerNetDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBases\PowerNetDataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PowerNetDataBase.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DataBases\sysdiagrams.cs">
-      <DependentUpon>PowerNetDataBase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataBases\Tarifs.cs">
-      <DependentUpon>PowerNetDataBase.tt</DependentUpon>
-    </Compile>
     <Compile Include="Infrastructur\Update.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -120,12 +131,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DataBases\PowerNetDataBase.edmx">
+    <EntityDeploy Include="DataBases\PowerNet.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PowerNetDataBase.Designer.cs</LastGenOutput>
+      <LastGenOutput>PowerNet.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataBases\PowerNetDataBase.edmx.diagram">
-      <DependentUpon>PowerNetDataBase.edmx</DependentUpon>
+    <None Include="DataBases\PowerNet.edmx.diagram">
+      <DependentUpon>PowerNet.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -137,22 +148,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBases\PowerNetDataBase.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PowerNetDataBase.Context.cs</LastGenOutput>
-      <DependentUpon>PowerNetDataBase.edmx</DependentUpon>
-    </Content>
-    <Content Include="DataBases\PowerNetDataBase.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PowerNetDataBase.edmx</DependentUpon>
-      <LastGenOutput>PowerNetDataBase.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Content Include="DataBases\PowerNet.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PowerNet.edmx</DependentUpon>
+      <LastGenOutput>PowerNet.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataBases\PowerNet.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PowerNet.edmx</DependentUpon>
+      <LastGenOutput>PowerNet.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

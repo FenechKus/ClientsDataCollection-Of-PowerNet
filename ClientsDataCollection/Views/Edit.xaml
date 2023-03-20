@@ -1,0 +1,25 @@
+﻿<Window x:Class="ClientsDataCollection.Views.Edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientsDataCollection.Views"
+        mc:Ignorable="d"
+        Title="Edit" Height="210" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock x:Name="IdBox" Text="{Binding Path=id}" Visibility="Collapsed"/>
+            <TextBlock Text="Name"/>
+            <TextBox x:Name="NameBox" Text="{Binding Path=name}"/>
+            <TextBlock Text="Address"/>
+            <TextBox x:Name="AddressBox" Text="{Binding Path=address}"/>
+            <TextBlock Text="Phone"/>
+            <TextBox x:Name="PhoneBox" Text="{Binding Path=phone}"/>
+            <TextBlock Text="Tarif"/>
+            <TextBox x:Name="TarifBox" Text="{Binding Path=Tarif}"/>
+            <Button Content="Apply" Click="ApplyClick"/>
+            <Button Content="Cancel" Click="CancelClick"/>
+            <Button Content="Remove" Click="RemoveClick"/>
+        </StackPanel>
+    </Grid>
+</Window>

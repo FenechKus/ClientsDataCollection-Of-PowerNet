@@ -20,12 +20,13 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="PowerNet" Foreground="#FFFDE366" FontSize="24" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center" FontStyle="Italic"/>
+            <TextBlock Text="PowerNet" Foreground="#FFFDE366" FontSize="24" FontFamily="Arial" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50 0 0 0" FontStyle="Italic"/>
+            <Button HorizontalAlignment="Left" Content="Add new row" Background="#FF35301C" Foreground="#FFFDE366" Click="AddClick"/>
             <StackPanel Grid.Column="1">
                 <TextBlock Foreground="#FFFDE366" FontFamily="Arial" Text="Search"/>
-                <TextBox Background="Black" Height="25" FontFamily="Arial" Foreground="#FFFDE366"/>
+                <TextBox Background="Black" Height="25" FontFamily="Arial" Foreground="#FFFDE366" TextChanged="Search" />
             </StackPanel>
-            <ComboBox Grid.Column="2" BorderBrush="#FF272222">
+            <ComboBox x:Name="ComboSelect" Grid.Column="2" BorderBrush="#FF272222" SelectionChanged="SelectionChanged" >
                 <ComboBox.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#FFF0F0F0"/>
@@ -34,17 +35,16 @@
                 </ComboBox.Background>
             </ComboBox>
         </Grid>
-        
-        
-        <ListView Grid.Row="1" Background="PapayaWhip" Foreground="Black" >
+
+        <ListView ItemsSource="{Binding Path=Clients}" Grid.Row="1" Background="PapayaWhip" Foreground="Black" >
             <ListView.View>
-                <GridView>
+                <GridView x:Name="GridV">
                     <GridView.Columns>
-                        <GridViewColumn x:Name="IdColumn" Header="Id"/>
-                        <GridViewColumn x:Name="NameColumn" Header="Name"/>
-                        <GridViewColumn x:Name="AdressColumn" Header="Address"/>
-                        <GridViewColumn x:Name="PhoneColumn" Header="Phone"/>
-                        <GridViewColumn x:Name="IdTarifColumns" Header="Tarif"/>
+                        <GridViewColumn x:Name="IdColumn" Header="Id" DisplayMemberBinding="{Binding Path=id}"/>
+                        <GridViewColumn x:Name="NameColumn" Header="Name" DisplayMemberBinding="{Binding Path=name}"/>
+                        <GridViewColumn x:Name="AdressColumn" Header="Address" DisplayMemberBinding="{Binding Path=address}"/>
+                        <GridViewColumn x:Name="PhoneColumn" Header="Phone" DisplayMemberBinding="{Binding Path=phone}"/>
+                        <GridViewColumn x:Name="IdTarifColumns" Header="Tarif" DisplayMemberBinding="{Binding Path=Tarif}"/>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
