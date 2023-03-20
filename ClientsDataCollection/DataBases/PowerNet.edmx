@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище PowerNetModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище PowerNetModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="id" />
@@ -13,7 +13,7 @@
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="address" Type="nvarchar" MaxLength="150" />
           <Property Name="phone" Type="nvarchar" MaxLength="11" />
-          <Property Name="idTarif" Type="int" />
+          <Property Name="Tarif" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -25,39 +25,11 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Tarifs">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nameTarif" Type="nvarchar" MaxLength="50" />
-          <Property Name="priceTarif" Type="int" />
-        </EntityType>
-        <Association Name="FK_Clients_Tarifs">
-          <End Role="Tarifs" Type="Self.Tarifs" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarifs">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Clients">
-              <PropertyRef Name="idTarif" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище PowerNetModelContainer">
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tarifs" EntityType="Self.Tarifs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Clients_Tarifs" Association="Self.FK_Clients_Tarifs">
-            <End Role="Tarifs" EntitySet="Tarifs" />
-            <End Role="Clients" EntitySet="Clients" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PowerNetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -69,8 +41,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="idTarif" Type="Int32" />
-          <NavigationProperty Name="Tarifs" Relationship="Self.FK_Clients_Tarifs" FromRole="Clients" ToRole="Tarifs" />
+          <Property Name="Tarif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -82,44 +53,16 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Tarifs">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nameTarif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="priceTarif" Type="Int32" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_Clients_Tarifs" FromRole="Tarifs" ToRole="Clients" />
-        </EntityType>
-        <Association Name="FK_Clients_Tarifs">
-          <End Role="Tarifs" Type="Self.Tarifs" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarifs">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Clients">
-              <PropertyRef Name="idTarif" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="PowerNetEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PowerNetEntitiess" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Clients" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Tarifs" EntityType="Self.Tarifs" />
-          <AssociationSet Name="FK_Clients_Tarifs" Association="Self.FK_Clients_Tarifs">
-            <End Role="Tarifs" EntitySet="Tarifs" />
-            <End Role="Clients" EntitySet="Clients" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище PowerNetModelContainer" CdmEntityContainer="PowerNetEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PowerNetModelContainer" CdmEntityContainer="PowerNetEntitiess">
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="PowerNetModel.Clients">
               <MappingFragment StoreEntitySet="Clients">
@@ -127,7 +70,7 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="idTarif" ColumnName="idTarif" />
+                <ScalarProperty Name="Tarif" ColumnName="Tarif" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -139,15 +82,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tarifs">
-            <EntityTypeMapping TypeName="PowerNetModel.Tarifs">
-              <MappingFragment StoreEntitySet="Tarifs">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nameTarif" ColumnName="nameTarif" />
-                <ScalarProperty Name="priceTarif" ColumnName="priceTarif" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
