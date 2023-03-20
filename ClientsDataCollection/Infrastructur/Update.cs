@@ -20,10 +20,6 @@ namespace ClientsDataCollection.Infrastructur
 
         private List<Clients> clients = new List<Clients>();
 
-        private List<Tarifs> tarifs = new List<Tarifs>();
-
-        public List<Clients> Clients { get => clients; set => clients=value; }
-
-        public List<Tarifs> Tarifs { get => tarifs; set => tarifs=value; }
+        public List<Clients> Clients { get => clients; set { clients = value; NotifyPropertyChange("Clients"); } }
     }
 }
